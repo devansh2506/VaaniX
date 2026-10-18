@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { Mic, Upload, ShieldCheck, AlertCircle, Info, RefreshCw } from "lucide-react";
 import { Pill } from "@/components/marketing/pill";
 import { RiskMeter } from "@/components/check/risk-meter";
@@ -168,14 +167,10 @@ export default function TryPage() {
             {mode === "mic" && (
               <div className="p-6 rounded-xl bg-light border border-border text-center space-y-3">
                 <Mic className="size-8 text-teal-dark mx-auto" />
-                <h4 className="font-bold text-navy text-base">Full Microphone Experience in App</h4>
+                <h4 className="font-bold text-navy text-base">Live microphone capture</h4>
                 <p className="text-xs sm:text-sm text-gray max-w-md mx-auto">
-                  The logged-in app features real-time 5s countdown + 10s auto-capture with volume meters.
-                  For this public demo, uploading a sample file is recommended.
+                  For this public demo, please upload a sample audio file instead.
                 </p>
-                <Button asChild size="sm" variant="outline">
-                  <Link href="/login">Sign in for live call capture</Link>
-                </Button>
               </div>
             )}
 

@@ -54,7 +54,7 @@ export function PublicHeader() {
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-3">
           <Button asChild variant="outline" size="sm" className="font-bold">
-            <Link href="/login">Sign In</Link>
+            <Link href="/app">Open App</Link>
           </Button>
           <Button asChild size="sm" className="font-bold">
             <Link href="/try">
@@ -118,8 +118,8 @@ export function PublicHeader() {
 
           <div className="pt-4 border-t border-border flex flex-col gap-3">
             <Button asChild variant="outline" className="w-full font-bold">
-              <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
-                Sign In
+              <Link href="/app" onClick={() => setMobileMenuOpen(false)}>
+                Open App
               </Link>
             </Button>
             <Button asChild className="w-full font-bold">

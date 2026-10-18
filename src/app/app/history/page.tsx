@@ -69,7 +69,7 @@ export default function HistoryPage() {
           <h1 className="text-3xl font-extrabold text-navy tracking-tight mt-3">
             Check History
           </h1>
-          <p className="text-base text-muted mt-2">
+          <p className="text-base text-gray mt-2">
             Review past voice analyses, deepfake acoustic scores, transcripts, and alerts.
           </p>
         </div>
@@ -81,7 +81,7 @@ export default function HistoryPage() {
 
       {/* Filter Tabs */}
       <div className="flex items-center gap-2 border-b border-border pb-3 overflow-x-auto">
-        <span className="text-xs font-bold uppercase tracking-wider text-muted mr-2">Filter:</span>
+        <span className="text-xs font-bold uppercase tracking-wider text-gray mr-2">Filter:</span>
         {[
           { id: 'all', label: 'All Checks' },
           { id: 'AI_CLONE', label: '⚠️ AI Clones' },
@@ -95,7 +95,7 @@ export default function HistoryPage() {
             className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-colors cursor-pointer ${
               filter === tab.id
                 ? 'bg-navy text-white'
-                : 'bg-light text-muted hover:text-navy'
+                : 'bg-light text-gray hover:text-navy'
             }`}
           >
             {tab.label}
@@ -105,16 +105,16 @@ export default function HistoryPage() {
 
       {/* Checks List */}
       {loading ? (
-        <Card className="p-12 text-center text-muted border border-border bg-surface">
+        <Card className="p-12 text-center text-gray border border-border bg-surface">
           Loading past checks...
         </Card>
       ) : checks.length === 0 ? (
         <Card className="p-12 border border-border bg-surface text-center space-y-4">
-          <div className="w-12 h-12 rounded-full bg-light text-muted flex items-center justify-center mx-auto text-xl font-bold">
+          <div className="w-12 h-12 rounded-full bg-light text-gray flex items-center justify-center mx-auto text-xl font-bold">
             📋
           </div>
           <h2 className="text-lg font-bold text-navy">No voice checks logged yet</h2>
-          <p className="text-sm text-muted max-w-sm mx-auto">
+          <p className="text-sm text-gray max-w-sm mx-auto">
             {filter === 'all'
               ? 'Run your first check using your microphone or an audio file to log detection results.'
               : `No checks matching filter "${filter}".`}
@@ -156,7 +156,7 @@ export default function HistoryPage() {
 
                       {c.is_stub && <DemoModeBadge />}
 
-                      <span className="text-xs text-muted font-mono">{dateStr}</span>
+                      <span className="text-xs text-gray font-mono">{dateStr}</span>
                     </div>
 
                     <div className="text-sm font-semibold text-navy flex items-center gap-2">
@@ -169,7 +169,7 @@ export default function HistoryPage() {
                     </div>
 
                     {c.transcript && (
-                      <p className="text-xs text-muted line-clamp-2 max-w-xl italic">
+                      <p className="text-xs text-gray line-clamp-2 max-w-xl italic">
                         &ldquo;{c.transcript}&rdquo;
                       </p>
                     )}
@@ -189,7 +189,7 @@ export default function HistoryPage() {
                   {/* Right: Scores */}
                   <div className="sm:text-right shrink-0">
                     <div className="flex sm:flex-col items-baseline sm:items-end justify-between gap-1">
-                      <span className="text-xs text-muted uppercase font-bold tracking-wider">Risk Score</span>
+                      <span className="text-xs text-gray uppercase font-bold tracking-wider">Risk Score</span>
                       <span
                         className={`text-2xl font-extrabold font-mono ${
                           c.risk_score >= 60
@@ -214,7 +214,7 @@ export default function HistoryPage() {
           {/* Pagination Controls */}
           {total > 20 && (
             <div className="flex items-center justify-between pt-4 border-t border-border">
-              <span className="text-xs text-muted">
+              <span className="text-xs text-gray">
                 Showing {(page - 1) * 20 + 1}–{Math.min(page * 20, total)} of {total} checks
               </span>
               <div className="flex gap-2">

@@ -15,7 +15,7 @@ export default function Call1930Page() {
       <div className="max-w-xl mx-auto space-y-6">
         <Link
           href="/"
-          className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted hover:text-navy transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-semibold text-gray hover:text-navy transition-colors"
         >
           <ArrowLeft className="w-4 h-4" /> Back to VaaniX
         </Link>
@@ -30,7 +30,7 @@ export default function Call1930Page() {
             <h1 className="text-3xl sm:text-4xl font-extrabold text-navy tracking-tight mt-2">
               National Cyber Crime Helpline
             </h1>
-            <p className="text-base text-muted max-w-md mx-auto">
+            <p className="text-base text-gray max-w-md mx-auto">
               If money has been transferred or unauthorized access was attempted, call immediately within the golden hour to freeze funds across recipient accounts.
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function Call1930Page() {
             </ul>
           </div>
 
-          <div className="pt-2 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-muted">
+          <div className="pt-2 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray">
             <a
               href="https://cybercrime.gov.in"
               target="_blank"

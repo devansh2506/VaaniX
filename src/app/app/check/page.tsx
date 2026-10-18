@@ -55,7 +55,7 @@ export default function CheckPage() {
           <h1 className="text-3xl font-extrabold text-navy tracking-tight mt-3">
             Real-Time Voice Check
           </h1>
-          <p className="text-base text-muted mt-2">
+          <p className="text-base text-gray mt-2">
             Verify caller voice authenticity using Wav2Vec2 Nes2Net acoustic analysis and natural language urgency scoring.
           </p>
         </div>
@@ -83,7 +83,7 @@ export default function CheckPage() {
                 onChange={(e) => setCallerNumber(e.target.value)}
                 className="max-w-md font-mono"
               />
-              <span className="text-xs text-muted self-center">
+              <span className="text-xs text-gray self-center">
                 Enables automatic Scam Radar lookup and crowd reputation checks.
               </span>
             </div>
@@ -97,7 +97,7 @@ export default function CheckPage() {
               className={`pb-3 px-6 text-sm font-bold border-b-2 transition-colors cursor-pointer ${
                 activeTab === 'mic'
                   ? 'border-teal-dark text-teal-dark'
-                  : 'border-transparent text-muted hover:text-navy'
+                  : 'border-transparent text-gray hover:text-navy'
               }`}
             >
               🎙 Microphone (Call on Speaker)
@@ -108,7 +108,7 @@ export default function CheckPage() {
               className={`pb-3 px-6 text-sm font-bold border-b-2 transition-colors cursor-pointer ${
                 activeTab === 'upload'
                   ? 'border-teal-dark text-teal-dark'
-                  : 'border-transparent text-muted hover:text-navy'
+                  : 'border-transparent text-gray hover:text-navy'
               }`}
             >
               📁 Upload Recording
@@ -123,7 +123,7 @@ export default function CheckPage() {
                   🎙
                 </div>
                 <h2 className="text-xl font-bold text-navy">Record Call via Microphone</h2>
-                <p className="text-sm text-muted leading-relaxed">
+                <p className="text-sm text-gray leading-relaxed">
                   Put your incoming call on speakerphone and hold your microphone near the speaker. The system skips 5s of ring and greeting, records exactly 10s of voice, and runs verification.
                 </p>
               </div>
@@ -156,7 +156,7 @@ export default function CheckPage() {
                   📁
                 </div>
                 <h2 className="text-xl font-bold text-navy">Upload Audio Recording</h2>
-                <p className="text-sm text-muted leading-relaxed">
+                <p className="text-sm text-gray leading-relaxed">
                   Upload an audio clip (8–12 seconds, max 3 MB) in WAV, MP3, M4A, or WEBM format.
                 </p>
               </div>
@@ -187,7 +187,7 @@ export default function CheckPage() {
           </div>
           <div className="space-y-2">
             <h2 className="text-xl font-bold text-navy">Skipping Ring and Greetings...</h2>
-            <p className="text-sm text-muted max-w-md mx-auto">
+            <p className="text-sm text-gray max-w-md mx-auto">
               Please hold your phone near the speaker. 10-second acoustic analysis begins in {countdown} seconds.
             </p>
           </div>
@@ -214,7 +214,7 @@ export default function CheckPage() {
 
           <div className="space-y-2">
             <h2 className="text-xl font-bold text-navy">Listening to Call Audio...</h2>
-            <p className="text-sm text-muted max-w-md mx-auto">
+            <p className="text-sm text-gray max-w-md mx-auto">
               Recording 16 kHz mono audio sample ({recordSecondsRemaining} seconds remaining). Analysis will run automatically.
             </p>
           </div>
@@ -241,7 +241,7 @@ export default function CheckPage() {
           <div className="w-16 h-16 rounded-full border-4 border-teal border-t-transparent animate-spin mx-auto" />
           <div className="space-y-2">
             <h2 className="text-xl font-bold text-navy">Analysing… (about 10 seconds)</h2>
-            <p className="text-sm text-muted max-w-md mx-auto leading-relaxed">
+            <p className="text-sm text-gray max-w-md mx-auto leading-relaxed">
               Running Wav2Vec2 Nes2Net-X acoustic deepfake classification and Whisper multilingual transcription simultaneously on the analysis server.
             </p>
           </div>
@@ -264,7 +264,7 @@ export default function CheckPage() {
       {state === 'error' && (
         <Card className="p-8 border border-red/30 bg-surface text-center space-y-4">
           <div className="text-red font-bold text-lg">Verification Encountered an Issue</div>
-          <p className="text-sm text-muted max-w-md mx-auto">{errorMessage}</p>
+          <p className="text-sm text-gray max-w-md mx-auto">{errorMessage}</p>
           <Button variant="default" size="sm" onClick={reset}>
             Try Again
           </Button>
@@ -289,7 +289,7 @@ export default function CheckPage() {
             {/* Risk Gauge & Sub-scores */}
             <Card className="p-6 sm:p-8 border border-border bg-surface flex flex-col items-center text-center space-y-6">
               <div>
-                <p className="text-xs font-bold uppercase tracking-wider text-muted">
+                <p className="text-xs font-bold uppercase tracking-wider text-gray">
                   Overall Decision Score
                 </p>
                 <div className="mt-4">
@@ -305,7 +305,7 @@ export default function CheckPage() {
                 />
               </div>
 
-              <p className="text-xs text-muted max-w-xs">{result.explanation}</p>
+              <p className="text-xs text-gray max-w-xs">{result.explanation}</p>
             </Card>
 
             {/* Transcript & Urgency Keywords */}

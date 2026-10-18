@@ -1,0 +1,17 @@
+# Build context is the repo root (see deploy/docker-compose.prod.yml).
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# Lightweight image: stub mode only (no torch/fairseq/weights).
+RUN apt-get update && apt-get install -y --no-install-recommends libsndfile1 \
+    && rm -rf /var/lib/apt/lists/*
+RUN pip install --no-cache-dir flask gunicorn numpy pyyaml rapidfuzz indic-transliteration requests
+
+COPY voice_detection_pipeline/ /app/
+# text_analyzer.py loads ../data/scam_words.yaml relative to /app
+COPY data/ /data/
+
+ENV VOICE_DETECTION_PORT=8765 VOICE_DETECTION_STUB=1 WHISPER_DISABLE_STUB=1
+EXPOSE 8765
+CMD ["gunicorn", "-b", "0.0.0.0:8765", "-w", "2", "--threads", "4", "--timeout", "90", "server:app"]

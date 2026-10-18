@@ -137,7 +137,7 @@ export default function SettingsPage() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto py-12 text-center text-muted">
+      <div className="max-w-4xl mx-auto py-12 text-center text-gray">
         Loading settings...
       </div>
     );
@@ -150,7 +150,7 @@ export default function SettingsPage() {
         <h1 className="text-3xl font-extrabold text-navy tracking-tight mt-3">
           Account & Alert Settings
         </h1>
-        <p className="text-base text-muted mt-2">
+        <p className="text-base text-gray mt-2">
           Configure real-time Telegram notification channels, jurisdiction routing, and profile details.
         </p>
       </div>
@@ -179,14 +179,14 @@ export default function SettingsPage() {
                 <Badge variant="outline">Not Linked</Badge>
               )}
             </div>
-            <p className="text-sm text-muted mt-1 leading-relaxed">
+            <p className="text-sm text-gray mt-1 leading-relaxed">
               When high-risk AI voice clones are identified, instant alerts with one-tap reporting actions are dispatched via the bot.
             </p>
           </div>
 
           <div className="shrink-0">
             {profile?.telegram_chat_id ? (
-              <span className="text-xs font-mono text-muted bg-light px-3 py-1.5 rounded-lg border border-border">
+              <span className="text-xs font-mono text-gray bg-light px-3 py-1.5 rounded-lg border border-border">
                 Chat ID: {profile.telegram_chat_id}
               </span>
             ) : (
@@ -319,7 +319,7 @@ export default function SettingsPage() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
             <h2 className="text-lg font-bold text-red">Delete My Data (Right to Erasure)</h2>
-            <p className="text-sm text-muted mt-1 leading-relaxed">
+            <p className="text-sm text-gray mt-1 leading-relaxed">
               In accordance with India’s Digital Personal Data Protection (DPDP) Act, permanently purge your account, all check recordings, registered family profiles, alerts, and draft complaint logs.
             </p>
           </div>

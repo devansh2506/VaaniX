@@ -135,7 +135,7 @@ function BankComplaintContent() {
 
   if (loading) {
     return (
-      <div className="max-w-2xl mx-auto py-16 text-center text-muted text-sm">
+      <div className="max-w-2xl mx-auto py-16 text-center text-gray text-sm">
         Preparing bank freeze notification...
       </div>
     );
@@ -147,7 +147,7 @@ function BankComplaintContent() {
         <Card className="p-8 border border-border bg-surface text-center space-y-3">
           <AlertTriangle className="size-8 text-red mx-auto" />
           <h2 className="text-xl font-bold text-navy">Unable to Load Report</h2>
-          <p className="text-sm text-muted">{error || 'Incident report could not be found or link expired.'}</p>
+          <p className="text-sm text-gray">{error || 'Incident report could not be found or link expired.'}</p>
           <Button asChild variant="outline" size="sm">
             <Link href="/app/check">Return to SatyaVoice</Link>
           </Button>
@@ -190,7 +190,7 @@ function BankComplaintContent() {
         <h1 className="text-3xl font-extrabold text-navy tracking-tight mt-3">
           Report Incident to Bank Fraud Desk
         </h1>
-        <p className="text-sm text-muted mt-1.5">
+        <p className="text-sm text-gray mt-1.5">
           Send an immediate transaction flag and debit alert request to your bank&apos;s fraud monitoring desk.
         </p>
       </div>
@@ -198,7 +198,7 @@ function BankComplaintContent() {
       <Card className="p-6 sm:p-8 border-2 border-border bg-surface space-y-6">
         <div className="flex items-start justify-between gap-4">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-muted">
+            <span className="text-xs font-bold uppercase tracking-wider text-gray">
               Target Banking Institution
             </span>
             <div className="flex items-center gap-2 mt-0.5">
@@ -247,7 +247,7 @@ function BankComplaintContent() {
         {/* Email Preview Box */}
         <div className="space-y-2 pt-2">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase tracking-wider text-muted">
+            <span className="text-xs font-bold uppercase tracking-wider text-gray">
               Pre-Written Request Preview
             </span>
             <Button
@@ -273,7 +273,7 @@ function BankComplaintContent() {
           <pre className="p-4 rounded-xl bg-light border border-border text-xs text-navy font-mono whitespace-pre-wrap leading-relaxed max-h-80 overflow-y-auto select-all">
             {emailData.body}
           </pre>
-          <p className="text-[11px] text-muted">
+          <p className="text-[11px] text-gray">
             Note: You can verify and fill in your specific account numbers or transaction IDs directly in Gmail before sending.
           </p>
         </div>
@@ -283,7 +283,7 @@ function BankComplaintContent() {
       <div className="p-5 rounded-2xl bg-light border border-border flex items-center justify-between gap-4">
         <div>
           <h4 className="text-sm font-bold text-navy">Need Instant Stop on Ongoing Transactions?</h4>
-          <p className="text-xs text-muted mt-0.5">
+          <p className="text-xs text-gray mt-0.5">
             Call National Cyber Crime Helpline 1930 to trigger inter-bank coordination freeze.
           </p>
         </div>
@@ -300,7 +300,7 @@ function BankComplaintContent() {
 
 export default function BankRedirectPage() {
   return (
-    <React.Suspense fallback={<div className="p-12 text-center text-sm text-muted">Loading bank report...</div>}>
+    <React.Suspense fallback={<div className="p-12 text-center text-sm text-gray">Loading bank report...</div>}>
       <BankComplaintContent />
     </React.Suspense>
   );

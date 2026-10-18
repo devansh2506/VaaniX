@@ -65,6 +65,7 @@
   --color-green-tint: var(--green-tint);
   --color-surface: var(--surface);
   --color-light: var(--light);
+  --color-canvas: var(--light);
   --color-gray: var(--gray);
   --color-faint: var(--faint);
   --color-border: var(--border);

@@ -36,7 +36,7 @@ export default async function AppPage() {
         <h1 className="text-3xl font-extrabold text-navy tracking-tight mt-3">
           Welcome to VaaniX
         </h1>
-        <p className="text-base text-muted mt-2">
+        <p className="text-base text-gray mt-2">
           Set up 2-way scam protection for you and your family in 3 simple steps.
         </p>
       </div>
@@ -55,7 +55,7 @@ export default async function AppPage() {
                 Link Telegram Bot
                 {hasTelegram && <span className="ml-2 text-xs font-semibold text-green-text">(Connected)</span>}
               </h2>
-              <p className="text-sm text-muted mt-1 leading-relaxed">
+              <p className="text-sm text-gray mt-1 leading-relaxed">
                 Receive real-time ⚠️ AI scam alerts with one-tap reporting when a high-risk call is detected.
               </p>
             </div>
@@ -80,7 +80,7 @@ export default async function AppPage() {
                 Add Family Members
                 {hasFamily && <span className="ml-2 text-xs font-semibold text-green-text">(Added)</span>}
               </h2>
-              <p className="text-sm text-muted mt-1 leading-relaxed">
+              <p className="text-sm text-gray mt-1 leading-relaxed">
                 Register loved ones so the AI verifies whether the caller matches their identity and alerts them instantly if impersonated.
               </p>
             </div>
@@ -102,7 +102,7 @@ export default async function AppPage() {
               <h2 className="text-base font-bold text-navy">
                 Run Your First Voice Check
               </h2>
-              <p className="text-sm text-muted mt-1 leading-relaxed">
+              <p className="text-sm text-gray mt-1 leading-relaxed">
                 Record a live audio snippet from your microphone or upload an audio file to inspect for AI acoustic cloning and scam urgency keywords.
               </p>
             </div>

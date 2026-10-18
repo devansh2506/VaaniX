@@ -140,7 +140,7 @@ function CyberComplaintContent() {
 
   if (loading) {
     return (
-      <div className="max-w-2xl mx-auto py-16 text-center text-muted text-sm">
+      <div className="max-w-2xl mx-auto py-16 text-center text-gray text-sm">
         Preparing official Cyber Crime complaint draft...
       </div>
     );
@@ -152,7 +152,7 @@ function CyberComplaintContent() {
         <Card className="p-8 border border-border bg-surface text-center space-y-3">
           <AlertTriangle className="size-8 text-red mx-auto" />
           <h2 className="text-xl font-bold text-navy">Unable to Load Complaint</h2>
-          <p className="text-sm text-muted">{error || 'Incident report could not be found or link expired.'}</p>
+          <p className="text-sm text-gray">{error || 'Incident report could not be found or link expired.'}</p>
           <Button asChild variant="outline" size="sm">
             <Link href="/app/check">Return to SatyaVoice</Link>
           </Button>
@@ -205,7 +205,7 @@ function CyberComplaintContent() {
         <h1 className="text-3xl font-extrabold text-navy tracking-tight mt-3">
           Report AI Voice Scam to Cyber Crime Cell
         </h1>
-        <p className="text-sm text-muted mt-1.5">
+        <p className="text-sm text-gray mt-1.5">
           Incident recorded at {new Date(check.created_at).toLocaleString('en-IN')}
           {check.caller_e164 && ` from ${check.caller_e164}`}
         </p>
@@ -216,7 +216,7 @@ function CyberComplaintContent() {
         <Card className="p-6 sm:p-8 border-2 border-border bg-surface space-y-6">
           <div className="flex items-start justify-between gap-4">
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-muted">
+              <span className="text-xs font-bold uppercase tracking-wider text-gray">
                 Official Cyber Crime Recipient
               </span>
               <div className="text-base font-bold text-navy mt-0.5">
@@ -259,7 +259,7 @@ function CyberComplaintContent() {
           {/* Email Preview Box */}
           <div className="space-y-2 pt-2">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold uppercase tracking-wider text-muted">
+              <span className="text-xs font-bold uppercase tracking-wider text-gray">
                 Pre-Written Complaint Preview
               </span>
               <Button
@@ -285,7 +285,7 @@ function CyberComplaintContent() {
             <pre className="p-4 rounded-xl bg-light border border-border text-xs text-navy font-mono whitespace-pre-wrap leading-relaxed max-h-80 overflow-y-auto select-all">
               {emailData.body}
             </pre>
-            <p className="text-[11px] text-muted">
+            <p className="text-[11px] text-gray">
               Note: You can review and edit your contact details or statement in Gmail before hitting send.
             </p>
           </div>
@@ -298,7 +298,7 @@ function CyberComplaintContent() {
               <ShieldAlert className="size-5 text-teal" />
               <span>Official Government Reporting Portal</span>
             </div>
-            <p className="text-xs text-muted leading-relaxed">
+            <p className="text-xs text-gray leading-relaxed">
               To ensure compliance and authenticity, SatyaVoice never invents unverified police email addresses.
               File your formal complaint directly on the Government of India National Cyber Crime Portal or call the 24x7 helpline.
             </p>
@@ -341,7 +341,7 @@ function CyberComplaintContent() {
       <div className="p-5 rounded-2xl bg-light border border-border flex items-center justify-between gap-4">
         <div>
           <h4 className="text-sm font-bold text-navy">Financial Loss Emergency?</h4>
-          <p className="text-xs text-muted mt-0.5">
+          <p className="text-xs text-gray mt-0.5">
             If funds were transferred, call 1930 immediately to freeze the money trail with beneficiary banks.
           </p>
         </div>
@@ -358,7 +358,7 @@ function CyberComplaintContent() {
 
 export default function CyberRedirectPage() {
   return (
-    <React.Suspense fallback={<div className="p-12 text-center text-sm text-muted">Loading complaint draft...</div>}>
+    <React.Suspense fallback={<div className="p-12 text-center text-sm text-gray">Loading complaint draft...</div>}>
       <CyberComplaintContent />
     </React.Suspense>
   );

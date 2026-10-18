@@ -200,7 +200,7 @@ export default function AlertDetailPage() {
 
   if (loading) {
     return (
-      <div className="max-w-4xl mx-auto py-12 text-center text-muted text-sm">
+      <div className="max-w-4xl mx-auto py-12 text-center text-gray text-sm">
         Loading alert details...
       </div>
     );
@@ -219,7 +219,7 @@ export default function AlertDetailPage() {
         <Card className="p-8 border border-border bg-surface text-center">
           <AlertTriangle className="size-8 text-red mx-auto mb-2" />
           <h2 className="text-lg font-bold text-navy">Alert Not Found</h2>
-          <p className="text-sm text-muted mt-1">{error || 'This alert could not be retrieved.'}</p>
+          <p className="text-sm text-gray mt-1">{error || 'This alert could not be retrieved.'}</p>
         </Card>
       </div>
     );
@@ -294,7 +294,7 @@ export default function AlertDetailPage() {
         <h1 className="text-3xl font-extrabold text-navy tracking-tight mt-3">
           Voice Clone Alert Details
         </h1>
-        <p className="text-sm text-muted mt-1.5">
+        <p className="text-sm text-gray mt-1.5">
           Recorded {new Date(check.created_at).toLocaleString('en-IN', {
             dateStyle: 'medium',
             timeStyle: 'short',
@@ -340,7 +340,7 @@ export default function AlertDetailPage() {
                 <Clock className="size-4.5 text-teal" />
                 2-Way Family Verification
               </h3>
-              <p className="text-xs text-muted mt-1">
+              <p className="text-xs text-gray mt-1">
                 {member
                   ? member.telegram_chat_id
                     ? `An instant verification check was sent to ${member.name}'s Telegram. Waiting for their response.`
@@ -389,7 +389,7 @@ export default function AlertDetailPage() {
           )}
 
           <div className="pt-2 border-t border-border/60 flex items-center justify-between">
-            <span className="text-xs text-muted">
+            <span className="text-xs text-gray">
               Was this actually a genuine call?
             </span>
             <Button
@@ -440,7 +440,7 @@ export default function AlertDetailPage() {
 
       {/* One-Tap Reporting Actions */}
       <div className="space-y-3">
-        <h3 className="text-sm font-bold uppercase tracking-wider text-muted">
+        <h3 className="text-sm font-bold uppercase tracking-wider text-gray">
           One-Tap Incident Reporting
         </h3>
 

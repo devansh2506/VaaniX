@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { Wordmark } from '@/components/layout/wordmark';
 import { Button } from '@/components/ui/button';
-import { createClient } from '@/lib/supabase/client';
 import { cn } from '@/lib/utils';
 
 interface AppNavProps {
@@ -29,9 +28,7 @@ export function AppNav({ userEmail, displayName }: AppNavProps) {
 
   const handleSignOut = async () => {
     setLoggingOut(true);
-    const supabase = createClient();
-    await supabase.auth.signOut();
-    router.push('/login');
+    router.push('/');
     router.refresh();
   };
 
@@ -56,7 +53,7 @@ export function AppNav({ userEmail, displayName }: AppNavProps) {
                     'px-3.5 py-1.5 rounded-full text-sm font-medium transition-colors',
                     isActive
                       ? 'bg-teal-tint text-teal-dark font-semibold'
-                      : 'text-muted hover:text-navy hover:bg-light'
+                      : 'text-gray hover:text-navy hover:bg-light'
                   )}
                 >
                   {link.label}
@@ -82,9 +79,9 @@ export function AppNav({ userEmail, displayName }: AppNavProps) {
             size="sm"
             onClick={handleSignOut}
             disabled={loggingOut}
-            className="text-xs font-semibold text-muted hover:text-navy border-border"
+            className="text-xs font-semibold text-gray hover:text-navy border-border"
           >
-            {loggingOut ? 'Signing out...' : 'Sign out'}
+            {loggingOut ? 'Leaving...' : 'Back to site'}
           </Button>
         </div>
 
@@ -127,7 +124,7 @@ export function AppNav({ userEmail, displayName }: AppNavProps) {
                     'px-3 py-2 rounded-xl text-sm font-medium transition-colors',
                     isActive
                       ? 'bg-teal-tint text-teal-dark font-semibold'
-                      : 'text-muted hover:text-navy hover:bg-light'
+                      : 'text-gray hover:text-navy hover:bg-light'
                   )}
                 >
                   {link.label}
@@ -150,7 +147,7 @@ export function AppNav({ userEmail, displayName }: AppNavProps) {
               disabled={loggingOut}
               className="text-xs font-semibold"
             >
-              Sign out
+              Back to site
             </Button>
           </div>
         </div>

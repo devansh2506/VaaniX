@@ -243,7 +243,7 @@ export default function FamilyPage() {
           <h1 className="text-3xl font-extrabold text-navy tracking-tight mt-3">
             Family Network
           </h1>
-          <p className="text-base text-muted mt-1.5 max-w-xl">
+          <p className="text-base text-gray mt-1.5 max-w-xl">
             When an AI clone impersonates a family member, SatyaVoice sends an instant verification check to their personal Telegram account.
           </p>
         </div>
@@ -283,7 +283,7 @@ export default function FamilyPage() {
       {/* Visual Network Map */}
       <Card className="p-6 border border-border bg-surface shadow-xs text-center relative overflow-hidden">
         <div className="flex items-center justify-between mb-2">
-          <span className="text-xs font-bold uppercase tracking-wider text-muted">
+          <span className="text-xs font-bold uppercase tracking-wider text-gray">
             Live Protection Orbit
           </span>
           <span className="text-xs text-gray font-medium">
@@ -304,7 +304,7 @@ export default function FamilyPage() {
         </div>
 
         {loading ? (
-          <div className="p-12 text-center text-muted text-sm">
+          <div className="p-12 text-center text-gray text-sm">
             Loading family network...
           </div>
         ) : members.length === 0 ? (
@@ -313,7 +313,7 @@ export default function FamilyPage() {
               🛡
             </div>
             <h3 className="text-base font-bold text-navy mb-1">No family members registered yet</h3>
-            <p className="text-sm text-muted max-w-md mx-auto mb-5">
+            <p className="text-sm text-gray max-w-md mx-auto mb-5">
               Add your children, spouse, or parents. They will receive an automated Telegram ping whenever an incoming call uses their voice.
             </p>
             <Button
@@ -348,7 +348,7 @@ export default function FamilyPage() {
                             {member.relationship}
                           </span>
                         </div>
-                        <p className="text-xs text-muted font-mono mt-0.5">{member.phone_e164}</p>
+                        <p className="text-xs text-gray font-mono mt-0.5">{member.phone_e164}</p>
                       </div>
 
                       {/* Joined Badge */}
@@ -367,7 +367,7 @@ export default function FamilyPage() {
 
                     {/* Aliases */}
                     {member.aliases && member.aliases.length > 0 && (
-                      <div className="text-xs text-muted">
+                      <div className="text-xs text-gray">
                         <span className="font-medium text-gray">Aliases: </span>
                         {member.aliases.map((a, i) => (
                           <span
@@ -385,13 +385,13 @@ export default function FamilyPage() {
                       <div className="flex items-center justify-between text-gray">
                         <span className="font-semibold text-navy">Telegram Invite Link</span>
                         {isJoined && member.joined_at && (
-                          <span className="text-[11px] text-muted">
+                          <span className="text-[11px] text-gray">
                             Joined {new Date(member.joined_at).toLocaleDateString('en-IN', { month: 'short', day: 'numeric' })}
                           </span>
                         )}
                       </div>
 
-                      <div className="flex items-center gap-1.5 bg-surface border border-border rounded-lg p-1.5 font-mono text-[11px] text-muted truncate">
+                      <div className="flex items-center gap-1.5 bg-surface border border-border rounded-lg p-1.5 font-mono text-[11px] text-gray truncate">
                         <span className="truncate flex-1 select-all">{inviteUrl}</span>
                       </div>
 
@@ -463,7 +463,7 @@ export default function FamilyPage() {
             <DialogTitle className="text-xl font-bold text-navy">
               {editingMember ? 'Edit Family Member' : 'Add Family Member'}
             </DialogTitle>
-            <DialogDescription className="text-sm text-muted">
+            <DialogDescription className="text-sm text-gray">
               Add contact details and known nicknames so SatyaVoice can link voice claims and dispatch verification alerts.
             </DialogDescription>
           </DialogHeader>
@@ -534,7 +534,7 @@ export default function FamilyPage() {
                 onChange={(e) => setFormAliases(e.target.value)}
                 className="bg-surface border-border text-navy"
               />
-              <p className="text-[11px] text-muted">
+              <p className="text-[11px] text-gray">
                 Words the scammer might use when claiming to be them (e.g. &ldquo;Mummy, main Guddu bol raha hoon&rdquo;).
               </p>
             </div>

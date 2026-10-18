@@ -175,7 +175,7 @@ export default function ApiKeysPage() {
           <h1 className="text-3xl font-extrabold text-navy tracking-tight mt-3">
             API Keys & Integrations
           </h1>
-          <p className="text-base text-muted mt-2">
+          <p className="text-base text-gray mt-2">
             Generate and manage API keys for telecommunication and enterprise call center integrations.
           </p>
         </div>
@@ -217,7 +217,7 @@ export default function ApiKeysPage() {
             </div>
             <button
               onClick={() => setNewlyCreatedKey(null)}
-              className="text-xs text-muted hover:text-navy underline"
+              className="text-xs text-gray hover:text-navy underline"
             >
               Dismiss
             </button>
@@ -266,7 +266,7 @@ export default function ApiKeysPage() {
             </h2>
             <button
               onClick={() => setIsCreating(false)}
-              className="text-sm text-muted hover:text-navy"
+              className="text-sm text-gray hover:text-navy"
             >
               Cancel
             </button>
@@ -299,7 +299,7 @@ export default function ApiKeysPage() {
                       className={`flex items-start gap-2.5 p-3 rounded-xl border cursor-pointer transition-colors ${
                         checked
                           ? 'border-teal bg-teal-tint/30 text-navy font-medium'
-                          : 'border-border bg-light text-muted hover:border-slate-300'
+                          : 'border-border bg-light text-gray hover:border-slate-300'
                       }`}
                     >
                       <input
@@ -310,7 +310,7 @@ export default function ApiKeysPage() {
                       />
                       <div>
                         <div className="font-mono text-xs">{scope}</div>
-                        <div className="text-xs text-muted">
+                        <div className="text-xs text-gray">
                           {scope === 'checks:create' && 'Run voice cloning checks'}
                           {scope === 'checks:read' && 'Query past analysis verdicts'}
                           {scope === 'evidence' && 'Download flagged audio evidence'}
@@ -352,27 +352,27 @@ export default function ApiKeysPage() {
           <h2 className="text-base font-bold text-navy flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-teal" /> Active & Revoked API Keys
           </h2>
-          <span className="text-xs text-muted">
+          <span className="text-xs text-gray">
             {keys.length} key{keys.length === 1 ? '' : 's'} registered
           </span>
         </div>
 
         {loading ? (
-          <div className="p-8 text-center text-sm text-muted">Loading your API keys...</div>
+          <div className="p-8 text-center text-sm text-gray">Loading your API keys...</div>
         ) : keys.length === 0 ? (
           <div className="p-10 text-center space-y-3">
-            <div className="w-12 h-12 rounded-full bg-light text-muted flex items-center justify-center mx-auto text-xl">
+            <div className="w-12 h-12 rounded-full bg-light text-gray flex items-center justify-center mx-auto text-xl">
               🔑
             </div>
             <p className="text-sm font-semibold text-navy">No API keys created yet</p>
-            <p className="text-xs text-muted max-w-sm mx-auto">
+            <p className="text-xs text-gray max-w-sm mx-auto">
               Generate an API key to connect your phone PBX, telecom gateway, or test the laptop detection pipeline.
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left text-sm">
-              <thead className="bg-light/60 text-xs text-muted border-b border-border">
+              <thead className="bg-light/60 text-xs text-gray border-b border-border">
                 <tr>
                   <th className="py-3 px-4 font-semibold">Name & Prefix</th>
                   <th className="py-3 px-4 font-semibold">Scopes</th>
@@ -389,7 +389,7 @@ export default function ApiKeysPage() {
                     <tr key={k.id} className={isRevoked ? 'bg-light/40 opacity-60' : 'hover:bg-light/30'}>
                       <td className="py-3 px-4">
                         <div className="font-semibold text-navy">{k.name}</div>
-                        <div className="font-mono text-xs text-muted">{k.key_prefix}</div>
+                        <div className="font-mono text-xs text-gray">{k.key_prefix}</div>
                       </td>
                       <td className="py-3 px-4">
                         <div className="flex flex-wrap gap-1 max-w-xs">
@@ -406,7 +406,7 @@ export default function ApiKeysPage() {
                       <td className="py-3 px-4 font-mono text-xs text-navy">
                         {k.request_count.toLocaleString()}
                       </td>
-                      <td className="py-3 px-4 text-xs text-muted">
+                      <td className="py-3 px-4 text-xs text-gray">
                         {k.last_used_at
                           ? new Date(k.last_used_at).toLocaleDateString('en-IN', {
                               day: 'numeric',
@@ -456,7 +456,7 @@ export default function ApiKeysPage() {
           <Code2 className="w-4 h-4 text-teal" />
           <span>Quick cURL Verification</span>
         </div>
-        <p className="text-xs text-muted">
+        <p className="text-xs text-gray">
           Test your generated API key using our v1 analyze endpoint:
         </p>
         <pre className="p-4 bg-navy text-teal-tint font-mono text-xs rounded-xl overflow-x-auto leading-relaxed">

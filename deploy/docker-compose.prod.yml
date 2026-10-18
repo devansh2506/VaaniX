@@ -1,0 +1,45 @@
+services:
+  model:
+    build:
+      context: ..
+      dockerfile: voice_detection_pipeline/Dockerfile.prod
+    restart: unless-stopped
+    environment:
+      VOICE_DETECTION_STUB: "1"
+      WHISPER_DISABLE_STUB: "1"
+      MODEL_SERVER_SECRET: ${MODEL_SERVER_SECRET}
+
+  web:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        NEXT_PUBLIC_SITE_URL: https://${SITE_HOST}
+        NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL:-https://placeholder.supabase.co}
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY:-placeholder-anon-key}
+    restart: unless-stopped
+    depends_on: [model]
+    environment:
+      MODEL_SERVER_URL: http://model:8765
+      MODEL_SERVER_SECRET: ${MODEL_SERVER_SECRET}
+      LINK_SIGNING_SECRET: ${LINK_SIGNING_SECRET}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY:-}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_WEBHOOK_SECRET: ${TELEGRAM_WEBHOOK_SECRET:-}
+    volumes:
+      - app_data:/app/.data
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    depends_on: [web]
+    environment:
+      SITE_HOST: ${SITE_HOST}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+
+volumes:
+  caddy_data:
+  app_data:
