@@ -1,0 +1,157 @@
+# Scam words and urgency phrase dictionary for VaaniX NLP scoring
+# Weights and word groups as specified in VaaniX_Website_Roadmap.md Section 6.1
+
+groups:
+  otp_pin:
+    weight: 30
+    words:
+      - "otp"
+      - "pin"
+      - "cvv"
+      - "password"
+      - "code batao"
+      - "code"
+      - "secret code"
+      - "ओटीपी"
+      - "पिन"
+      - "सीवीवी"
+      - "पासवर्ड"
+      - "कोड बताओ"
+      - "कोड"
+
+  remote_app:
+    weight: 30
+    words:
+      - "anydesk"
+      - "teamviewer"
+      - "screen share"
+      - "screenshare"
+      - "apk"
+      - "quicksupport"
+      - "rustdesk"
+      - "एनीडेस्क"
+      - "टीमव्यूअर"
+      - "स्क्रीन शेयर"
+      - "एपीके"
+
+  money:
+    weight: 25
+    words:
+      - "upi"
+      - "paise"
+      - "paisa"
+      - "transfer"
+      - "bhejo"
+      - "gpay"
+      - "phonepe"
+      - "paytm"
+      - "qr"
+      - "qr code"
+      - "rupaye"
+      - "bhej do"
+      - "यूपीआई"
+      - "पैसे"
+      - "पैसा"
+      - "ट्रांसफर"
+      - "भेजो"
+      - "जीपे"
+      - "फोनपे"
+      - "पेटीएम"
+      - "क्यूआर"
+      - "रुपये"
+
+  secrecy:
+    weight: 20
+    words:
+      - "kisi ko mat batana"
+      - "mat batana"
+      - "don't tell"
+      - "dont tell"
+      - "secret"
+      - "chupchap"
+      - "phone mat katna"
+      - "call disconnect mat karna"
+      - "किसी को मत बताना"
+      - "मत बताना"
+      - "चुपचाप"
+      - "फोन मत काटना"
+
+  authority:
+    weight: 20
+    words:
+      - "police"
+      - "pulis"
+      - "cbi"
+      - "customs"
+      - "rbi"
+      - "trai"
+      - "warrant"
+      - "digital arrest"
+      - "police station"
+      - "thaaney"
+      - "cyber crime"
+      - "court"
+      - "inspector"
+      - "पुलिस"
+      - "सीबीआई"
+      - "कस्टम्स"
+      - "आरबीआई"
+      - "ट्राई"
+      - "वारंट"
+      - "डिजिटल अरेस्ट"
+      - "थाने"
+
+  kyc:
+    weight: 20
+    words:
+      - "kyc"
+      - "account block"
+      - "card block"
+      - "band ho jayega"
+      - "pan card"
+      - "aadhaar"
+      - "sim block"
+      - "केवाईसी"
+      - "अकाउंट ब्लॉक"
+      - "कार्ड ब्लॉक"
+      - "बंद हो जाएगा"
+      - "पैन कार्ड"
+      - "आधार"
+
+  urgency:
+    weight: 15
+    words:
+      - "jaldi"
+      - "abhi"
+      - "turant"
+      - "urgent"
+      - "emergency"
+      - "immediately"
+      - "quickly"
+      - "right now"
+      - "jaldi karo"
+      - "जल्दी"
+      - "अभी"
+      - "तुरंत"
+      - "अर्जेंट"
+      - "इमरजेंसी"
+      - "जल्दी करो"
+
+  accident:
+    weight: 15
+    words:
+      - "accident"
+      - "hospital"
+      - "injured"
+      - "jail"
+      - "arrest"
+      - "chot"
+      - "fas gaya"
+      - "hospital mein"
+      - "police pakad li"
+      - "एक्सीडेंट"
+      - "अस्पताल"
+      - "जेल"
+      - "चोट"
+      - "फंस गया"
+      - "अरेस्ट"

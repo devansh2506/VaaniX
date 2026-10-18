@@ -46,7 +46,7 @@ services:
       VOICE_DETECTION_STUB: 1
       JWT_SECRET: satyavoice-dev-jwt-secret-key-change-in-production-12345
       REDIRECT_SECRET: satyavoice-dev-redirect-secret-hmac-key-67890
-      TELEGRAM_BOT_TOKEN: 8899838034:AAFGAB66I6aEVCOPuGuCjguYACLTexhDXas
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
       TELEGRAM_BOT_USERNAME: Prevent_Scambot
     depends_on:
       db:

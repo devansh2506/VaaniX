@@ -1,108 +1,79 @@
 """
-pipeline.py + a Telegram alert, in one run: record from BlackHole -> save WAV
--> detect -> save + print the verdict -> if it's a real (non-stub) SPOOF
-result, send the voice-clone warning to TELEGRAM_CHAT_ID.
-
-This is intentionally a separate file from pipeline.py, not a modification
-of it — pipeline.py stays usable on its own, with zero Telegram dependency,
-for anyone who just wants detection without alerting.
-
-Setup: none. The bot token (telegram/_client.py) and TELEGRAM_CHAT_ID below
-are both hardcoded for this one test recipient (Devansh) — just run it.
-
-Usage:
-    python pipeline_with_alerts.py
-    VOICE_DETECTION_STUB=1 python pipeline_with_alerts.py
-        -> runs normally, but never sends a real Telegram message: stub
-           scores are random, not a real detection, so alerting on one
-           would just be spam. See the stub check below.
+CLI Pipeline with API forwarding:
+Captures call audio from microphone/BlackHole -> saves local WAV
+-> POSTs to VaaniX website API (${VAANIX_API_URL}/api/v1/analyze)
+-> Prints verified detection verdict, transcript, and risk analysis JSON.
 """
 
 import json
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
 
+import requests
+
 from capture import record_sample
-from model_runner import run_detection
 
-# alerts.py lives in a sibling directory and does `from _client import
-# api_call` internally — a same-directory import that only resolves if
-# telegram/ itself is on sys.path, not just the repo root. This must happen
-# before the import below.
-TELEGRAM_DIR = Path(__file__).parent.parent / "telegram"
-sys.path.insert(0, str(TELEGRAM_DIR))
-
-from alerts import send_voice_clone_alert  # noqa: E402  (see sys.path note above)
-
-# Hardcoded to Devansh's chat_id — this pipeline is only ever tested against
-# one recipient, discovered via telegram/get_chat_id.py.
-TELEGRAM_CHAT_ID = "1814620976"
-
-# Alert fires when spoof_prob exceeds this — a separate knob from
-# model_runner.py's own 50% SPOOF/REAL classification cutoff, so alerting
-# sensitivity can be tuned here without touching that file. Back to 50%
-# (matches the classification cutoff, so an alert fires exactly when the
-# verdict is SPOOF) — was temporarily 0.0 for testing the Telegram path
-# itself on every run.
-ALERT_THRESHOLD_PERCENT = 50.0
+VAANIX_API_URL = os.environ.get("VAANIX_API_URL", "http://localhost:3000").rstrip("/")
+VAANIX_API_KEY = os.environ.get("VAANIX_API_KEY", "")
 
 
 def main() -> None:
     wav_path = record_sample()
+    print(f"\n[pipeline] Audio captured: {wav_path.name}")
 
-    print(f"[pipeline] sending {wav_path.name} to the model...")
-    result = run_detection(wav_path)
+    api_endpoint = f"{VAANIX_API_URL}/api/v1/analyze"
+    print(f"[pipeline] Posting to VaaniX API: {api_endpoint}")
 
-    result_with_meta = {
-        **result,
-        "wav_file": wav_path.name,
-        "timestamp": datetime.now().isoformat(),
-    }
+    headers = {}
+    if VAANIX_API_KEY:
+        headers["Authorization"] = f"Bearer {VAANIX_API_KEY}"
 
-    result_path = wav_path.with_suffix(".json")
-    result_path.write_text(json.dumps(result_with_meta, indent=2))
-
-    print(f"\n{'='*50}")
-    print("VERDICT")
-    print(f"{'='*50}")
-    if result["stub"]:
-        print("⚠️  STUB MODE — this score is random, not a real detection")
-    icon = "🚨" if "SPOOF" in result["classification"] else "✅"
-    print(f"{icon} {result['classification']}  (confidence: {result['confidence']:.2f}%)")
-    print(f"    Real:  {result['real_prob']:.2f}%")
-    print(f"    Spoof: {result['spoof_prob']:.2f}%")
-    print(f"{'='*50}")
-    print(f"Audio saved:  {wav_path}")
-    print(f"Result saved: {result_path}")
-
-    should_alert = result["spoof_prob"] > ALERT_THRESHOLD_PERCENT
-
-    if result["stub"]:
-        if should_alert:
-            print("\n[alert] over threshold in stub mode — not sending a "
-                  "real Telegram alert for a random score.")
-        return
-
-    if not should_alert:
-        return
-
-    if not TELEGRAM_CHAT_ID:
-        print(f"\n[alert] spoof_prob {result['spoof_prob']:.2f}% is over the "
-              f"{ALERT_THRESHOLD_PERCENT}% threshold, but TELEGRAM_CHAT_ID is "
-              "not set — no alert sent. See this file's docstring for setup.")
-        return
-
-    print(f"\n[alert] spoof_prob {result['spoof_prob']:.2f}% is over the "
-          f"{ALERT_THRESHOLD_PERCENT}% threshold — sending Telegram alert to "
-          f"{TELEGRAM_CHAT_ID}...")
     try:
-        message_id = send_voice_clone_alert(TELEGRAM_CHAT_ID, dry_run=False)
-        print(f"[alert] sent (message_id={message_id})")
-    except RuntimeError as exc:
-        # A Telegram outage or bad token shouldn't erase the detection you
-        # already got and already saved above — just report it and move on.
-        print(f"[alert] WARNING: failed to send Telegram alert: {exc}")
+        with open(wav_path, "rb") as f:
+            files = {"audio": (wav_path.name, f, "audio/wav")}
+            response = requests.post(api_endpoint, files=files, headers=headers, timeout=65)
+
+        if response.status_code == 401:
+            print("[pipeline] Error: Unauthorized. Check VAANIX_API_KEY in environment.")
+            return
+
+        if not response.ok:
+            print(f"[pipeline] Error from API ({response.status_code}): {response.text}")
+            return
+
+        result = response.json()
+
+        print(f"\n{'='*55}")
+        print("VAANIX VERIFICATION RESULT")
+        print(f"{'='*55}")
+
+        check = result.get("check", result)
+        verdict = check.get("verdict", "UNKNOWN")
+        risk_score = check.get("riskScore", check.get("risk_score", 0))
+        voice_score = check.get("voiceScore", check.get("voice_score", 0))
+        text_score = check.get("textScore", check.get("text_score", 0))
+        transcript = check.get("transcript", "")
+        claim = check.get("claim", {})
+
+        icon = "🚨" if verdict == "AI_CLONE" else "✅" if verdict == "REAL" else "⚠️"
+        print(f"{icon} Verdict:     {verdict}")
+        print(f"   Risk Score:  {risk_score}/100")
+        print(f"   Voice Score: {voice_score}/100")
+        print(f"   Text Score:  {text_score}/100")
+
+        if claim and claim.get("label"):
+            print(f"   Claimed ID:  {claim.get('label')}")
+
+        if transcript:
+            print(f"   Transcript:  \"{transcript}\"")
+
+        print(f"{'='*55}\n")
+        print(json.dumps(result, indent=2))
+
+    except Exception as exc:
+        print(f"[pipeline] Failed to post audio to VaaniX API: {exc}")
 
 
 if __name__ == "__main__":

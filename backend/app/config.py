@@ -39,7 +39,7 @@ class Settings(BaseSettings):
     AUDIO_DIR: str = str(BASE_DIR / "data" / "audio")
     AUDIO_RETENTION_DAYS: int = 30
 
-    TELEGRAM_BOT_TOKEN: str = "8899838034:AAFGAB66I6aEVCOPuGuCjguYACLTexhDXas"
+    TELEGRAM_BOT_TOKEN: str = ""
     TELEGRAM_BOT_USERNAME: str = "Prevent_Scambot"
     TELEGRAM_MODE: str = "polling"
 

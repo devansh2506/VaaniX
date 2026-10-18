@@ -3,17 +3,19 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const badgeVariants = cva(
-  "inline-flex items-center gap-1.5 rounded-md border px-2 py-0.5 text-[12px] font-medium leading-5",
+  "inline-flex items-center gap-1.5 rounded-full border px-3 py-0.5 text-xs font-semibold leading-5",
   {
     variants: {
       variant: {
-        default: "bg-surface-sunken border-border text-foreground-muted",
-        outline: "bg-transparent border-border-strong text-foreground",
-        accent: "bg-accent-soft border-transparent text-accent-strong",
-        critical: "bg-critical-soft border-transparent text-critical-strong",
-        warning: "bg-warning-soft border-transparent text-warning-strong",
-        positive: "bg-positive-soft border-transparent text-positive-strong",
-        info: "bg-info-soft border-transparent text-info",
+        default: "bg-light border-border text-gray",
+        teal: "bg-teal-tint border-teal/20 text-teal-dark",
+        outline: "bg-transparent border-border text-navy",
+        critical: "bg-red-tint border-red/30 text-red-text",
+        danger: "bg-red-tint border-red/30 text-red-text",
+        warning: "bg-[#FEF6E7] border-[#F5C26B] text-[#9E6200]",
+        positive: "bg-green-tint border-green/30 text-green-text",
+        success: "bg-green-tint border-green/30 text-green-text",
+        navy: "bg-navy border-transparent text-white",
       },
     },
     defaultVariants: { variant: "default" },

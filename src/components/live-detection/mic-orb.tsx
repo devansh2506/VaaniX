@@ -2,18 +2,16 @@
 
 import { Loader2, Mic, MicOff } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { MicState } from "@/hooks/use-live-detection";
+export type MicState = "idle" | "requesting" | "listening" | "analyzing" | "error";
 
 export function MicOrb({
   state,
   level,
   onClick,
-  onDoubleClick,
 }: {
   state: MicState;
   level: number;
   onClick?: () => void;
-  onDoubleClick?: () => void;
 }) {
   const listening = state === "listening";
   const requesting = state === "requesting";
@@ -22,7 +20,6 @@ export function MicOrb({
     <button
       type="button"
       onClick={onClick}
-      onDoubleClick={onDoubleClick}
       disabled={requesting}
       aria-pressed={listening}
       aria-label={listening ? "Stop microphone recording" : "Start microphone recording"}

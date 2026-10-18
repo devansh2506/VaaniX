@@ -40,7 +40,12 @@ tqdm
 # detection, but still imported unconditionally), which needs this:
 sacrebleu
 
-# --- email_agent/email_connector.py (Gmail OAuth + fetch) ---
-google-auth
-google-auth-oauthlib
-google-api-python-client
+# --- STT and NLP analysis for VaaniX ---
+faster-whisper>=1.0.0
+indic-transliteration>=2.3.0
+rapidfuzz>=3.0.0
+pyyaml>=6.0
+pytest>=8.0.0
+requests>=2.28.0
+
+
