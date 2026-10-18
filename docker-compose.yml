@@ -1,0 +1,62 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    container_name: satyavoice-db
+    environment:
+      POSTGRES_USER: satyavoice
+      POSTGRES_PASSWORD: satyavoice_secure_password
+      POSTGRES_DB: satyavoice
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U satyavoice"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  model:
+    build:
+      context: ./voice_detection_pipeline
+      dockerfile: Dockerfile
+    container_name: satyavoice-model
+    ports:
+      - "8765:8765"
+    environment:
+      VOICE_DETECTION_PORT: 8765
+      VOICE_DETECTION_STUB: 1
+    volumes:
+      - ./voice_detection_pipeline:/app
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: satyavoice-api
+    ports:
+      - "8000:8000"
+    environment:
+      ENV: dev
+      API_BASE_URL: http://localhost:8000
+      DATABASE_URL: postgresql+asyncpg://satyavoice:satyavoice_secure_password@db:5432/satyavoice
+      MODEL_SERVER_URL: http://model:8765
+      VOICE_DETECTION_STUB: 1
+      JWT_SECRET: satyavoice-dev-jwt-secret-key-change-in-production-12345
+      REDIRECT_SECRET: satyavoice-dev-redirect-secret-hmac-key-67890
+      TELEGRAM_BOT_TOKEN: 8899838034:AAFGAB66I6aEVCOPuGuCjguYACLTexhDXas
+      TELEGRAM_BOT_USERNAME: Prevent_Scambot
+    depends_on:
+      db:
+        condition: service_healthy
+      model:
+        condition: service_started
+    volumes:
+      - ./backend:/app
+      - audio_data:/app/data/audio
+
+volumes:
+  postgres_data:
+  audio_data:

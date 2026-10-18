@@ -1,0 +1,188 @@
+# --- SatyaVoice Keyword Groups for Scam Extraction ---
+# Both Latin (romanised Hinglish/English) and Devanagari script
+
+money:
+  - upi
+  - paise
+  - paisa
+  - money
+  - transfer
+  - bhejo
+  - bhej do
+  - bhej
+  - send
+  - google pay
+  - gpay
+  - phonepe
+  - paytm
+  - account
+  - khata
+  - qr
+  - rupees
+  - rupay
+  - rupaye
+  - cash
+  - bank account
+  - यूपीआई
+  - पैसे
+  - पैसा
+  - ट्रांसफर
+  - भेजो
+  - भेज दो
+  - खाता
+  - खाते
+  - गूगल पे
+  - फोनपे
+  - पेटीएम
+
+otp_pin:
+  - otp
+  - pin
+  - upi pin
+  - cvv
+  - password
+  - code batao
+  - code bata
+  - code
+  - verification code
+  - one time password
+  - ओटीपी
+  - पिन
+  - पासवर्ड
+  - कोड बताओ
+  - कोड
+
+urgency:
+  - jaldi
+  - abhi
+  - turant
+  - urgent
+  - immediately
+  - right now
+  - 5 minute
+  - 10 minute
+  - emergency
+  - fast
+  - quickly
+  - abhi ke abhi
+  - roko mat
+  - delay mat karo
+  - जल्दी
+  - अभी
+  - तुरंत
+  - अर्जेंट
+  - इमरजेंसी
+  - अभी के अभी
+
+secrecy:
+  - kisi ko mat batana
+  - mat batana
+  - don't tell
+  - dont tell
+  - secret
+  - kisi se baat mat karna
+  - phone mat kaatna
+  - phone mat cut karna
+  - do not disconnect
+  - papa ko mat
+  - mummy ko mat
+  - ghar pe mat batana
+  - kisi ko pata na chale
+  - किसी को मत बताना
+  - मत बताना
+  - पापा को मत
+  - मम्मी को मत
+  - सीक्रेट
+  - फोन मत काटना
+
+accident:
+  - accident
+  - hospital
+  - injured
+  - chot
+  - chot lag gayi
+  - ambulance
+  - doctor
+  - police station
+  - thana
+  - jail
+  - arrest
+  - custody
+  - pakad liya
+  - case
+  - fir
+  - एक्सीडेंट
+  - अस्पताल
+  - हॉस्पिटल
+  - चोट
+  - पुलिस स्टेशन
+  - जेल
+  - अरेस्ट
+  - पकड़ लिया
+  - हिरासत
+
+authority:
+  - cbi
+  - police
+  - customs
+  - rbi
+  - trai
+  - cyber cell
+  - cyber police
+  - supreme court
+  - high court
+  - court
+  - warrant
+  - digital arrest
+  - video call
+  - skype
+  - narcotics
+  - parcel
+  - illegal parcel
+  - passport
+  - enforcement directorate
+  - ed
+  - income tax
+  - सीबीआई
+  - पुलिस
+  - कस्टम्स
+  - आरबीआई
+  - ट्राई
+  - साइबर सेल
+  - कोर्ट
+  - वारंट
+  - डिजिटल अरेस्ट
+  - वीडियो कॉल
+  - पार्सल
+
+kyc:
+  - kyc
+  - account block
+  - card block
+  - band ho jayega
+  - suspend ho jayega
+  - update
+  - pan card
+  - aadhaar link
+  - sim block
+  - deactivation
+  - expiry
+  - बंद हो जाएगा
+  - केवाईसी
+  - अकाउंट ब्लॉक
+  - पैन कार्ड
+  - आधार
+
+remote:
+  - anydesk
+  - teamviewer
+  - quicksupport
+  - screen share
+  - app download
+  - apk
+  - install karo
+  - rustdesk
+  - एनीडेस्क
+  - टीमव्यूअर
+  - ऐप डाउनलोड
+  - स्क्रीन शेयर

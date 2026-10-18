@@ -1,0 +1,132 @@
+# --- SatyaVoice Family Relationship Extraction Dictionary ---
+# Maps terms used by callers to candidate member relationships in family groups
+
+# Caller addresses listener with these terms => listener is parent => caller claims to be child
+parent_terms:
+  terms:
+    - mummy
+    - mumma
+    - maa
+    - mom
+    - mother
+    - ammi
+    - mataji
+    - papa
+    - pappa
+    - dad
+    - daddy
+    - pitaji
+    - abbu
+    - bauji
+    - मम्मी
+    - माँ
+    - अम्मा
+    - पापा
+    - डैडी
+    - पिताजी
+    - अब्बू
+  maps_to_caller_relation:
+    - son
+    - daughter
+
+# Caller addresses listener with these terms => listener is child => caller claims to be parent
+child_terms:
+  terms:
+    - beta
+    - beti
+    - bachha
+    - bacche
+    - sonny
+    - son
+    - daughter
+    - बेटा
+    - बेटी
+    - बच्चा
+  maps_to_caller_relation:
+    - father
+    - mother
+
+# Caller addresses listener as sibling
+sibling_terms:
+  terms:
+    - bhaiya
+    - bhai
+    - brother
+    - bro
+    - didi
+    - behen
+    - behna
+    - sister
+    - sis
+    - भैया
+    - भाई
+    - दीदी
+    - बहन
+  maps_to_caller_relation:
+    - brother
+    - sister
+
+# Caller addresses listener as grandparent => caller claims to be grandchild
+grandparent_terms:
+  terms:
+    - dadi
+    - dadiji
+    - nani
+    - naniji
+    - dada
+    - dadaji
+    - nana
+    - nanaji
+    - grandma
+    - grandpa
+    - दादी
+    - नानी
+    - दादा
+    - नाना
+  maps_to_caller_relation:
+    - grandson
+    - granddaughter
+
+# Caller addresses listener as spouse
+spouse_terms:
+  terms:
+    - suno
+    - darling
+    - sweetheart
+    - jaan
+    - hubbie
+    - wifey
+    - सुनो
+    - जान
+  maps_to_caller_relation:
+    - husband
+    - wife
+
+# Gender markers in Hindi/Hinglish verbs to narrow candidate pool
+gender_markers:
+  male:
+    - raha
+    - gya
+    - gaya
+    - hua
+    - karunga
+    - bolunga
+    - kahunga
+    - rha
+    - रहा
+    - गया
+    - हुआ
+    - करूँगा
+  female:
+    - rahi
+    - gyi
+    - gayi
+    - hui
+    - karungi
+    - bolungi
+    - kahungi
+    - rhi
+    - रही
+    - गई
+    - हुई
+    - करूँगी

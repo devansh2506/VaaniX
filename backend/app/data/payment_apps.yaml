@@ -1,0 +1,52 @@
+# --- Payment & Banking Apps Guard List ---
+# Android package names monitored by PaymentGuardService for 30 minutes following an AI scam alert.
+
+apps:
+  - name: "Google Pay"
+    package: "com.google.android.apps.nbu.paisa.user"
+    category: "upi"
+
+  - name: "PhonePe"
+    package: "com.phonepe.app"
+    category: "upi"
+
+  - name: "Paytm"
+    package: "net.one97.paytm"
+    category: "upi"
+
+  - name: "BHIM UPI"
+    package: "in.org.npci.upiapp"
+    category: "upi"
+
+  - name: "SBI YONO"
+    package: "com.sbi.lotusintouch"
+    category: "banking"
+
+  - name: "ICICI iMobile"
+    package: "com.csam.icici.bank.imobile"
+    category: "banking"
+
+  - name: "HDFC MobileBanking"
+    package: "com.snapwork.hdfc"
+    category: "banking"
+
+  - name: "Axis Mobile"
+    package: "com.axis.mobile"
+    category: "banking"
+
+  - name: "Kotak Mobile Banking"
+    package: "com.msf.kbank.mobile"
+    category: "banking"
+
+  - name: "CRED"
+    package: "com.dreamplug.androidapp"
+    category: "payment"
+
+  - name: "Amazon Pay"
+    package: "in.amazon.mShop.android.shopping"
+    category: "payment"
+
+  # Testing / Demo stub package
+  - name: "SatyaVoice Pay Demo"
+    package: "in.satyavoice.app.paydemo"
+    category: "demo"

@@ -1,0 +1,59 @@
+# --- Indian Banking Fraud Reporting Contacts Directory ---
+# Map of bank codes to institution name and official fraud response email.
+# NOTE: Set verified bank fraud emails from official bank security portals.
+
+SBI:
+  name: "State Bank of India"
+  # TODO: Fill official bank fraud email address
+  fraud_email: ""
+  helpline: "1800111109"
+
+HDFC:
+  name: "HDFC Bank"
+  fraud_email: ""
+  helpline: "18002026161"
+
+ICICI:
+  name: "ICICI Bank"
+  fraud_email: ""
+  helpline: "18002662"
+
+AXIS:
+  name: "Axis Bank"
+  fraud_email: ""
+  helpline: "18604195555"
+
+PNB:
+  name: "Punjab National Bank"
+  fraud_email: ""
+  helpline: "18001802222"
+
+CANARA:
+  name: "Canara Bank"
+  fraud_email: ""
+  helpline: "18004250018"
+
+BOB:
+  name: "Bank of Baroda"
+  fraud_email: ""
+  helpline: "18002584455"
+
+KOTAK:
+  name: "Kotak Mahindra Bank"
+  fraud_email: ""
+  helpline: "18602662666"
+
+UNION:
+  name: "Union Bank of India"
+  fraud_email: ""
+  helpline: "1800222244"
+
+IDFC:
+  name: "IDFC FIRST Bank"
+  fraud_email: ""
+  helpline: "180010888"
+
+OTHER:
+  name: "Other Bank"
+  fraud_email: ""
+  helpline: "1930"

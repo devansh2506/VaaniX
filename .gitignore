@@ -1,0 +1,55 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Model checkpoints & weights
+*.pt
+*.pth
+*.bin
+*.onnx
+*.safetensors
+voice_detection_pipeline/*.pt
+voice_detection_pipeline/*.pth
+
+# Databases & local state
+*.db
+*.sqlite
+*.sqlite3
+satyavoice.db
+backend/data/audio/
+data/audio/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Android / Gradle
+.gradle/
+build/
+android/app/build/
+android/satyavoice-sdk/build/
+local.properties
+.idea/
+*.iml
+.DS_Store
+
+# Environment & secrets
+.env
+.env.local
+.env.production
+token.json
+credentials.json

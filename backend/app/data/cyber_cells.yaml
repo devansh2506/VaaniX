@@ -1,0 +1,85 @@
+# --- Indian State Cyber Crime Cells Directory ---
+# State codes to official reporting email addresses.
+# NOTE: Set official email addresses as verified from respective state police cyber portals.
+# If empty (""), the app prompts the user to add the state cyber cell or file via cybercrime.gov.in / 1930.
+
+DL:
+  name: "Delhi"
+  # TODO: Fill official state police cyber cell email
+  email: ""
+  portal: "https://cybercell.delhipolice.gov.in"
+
+MH:
+  name: "Maharashtra"
+  email: ""
+  portal: "https://cybercrime.maharashtra.gov.in"
+
+KA:
+  name: "Karnataka"
+  email: ""
+  portal: "https://cid.karnataka.gov.in/cyber-crime"
+
+UP:
+  name: "Uttar Pradesh"
+  email: ""
+  portal: "https://uppolice.gov.in"
+
+HR:
+  name: "Haryana"
+  email: ""
+  portal: "https://haryanapolice.gov.in"
+
+TN:
+  name: "Tamil Nadu"
+  email: ""
+  portal: "https://eservices.tnpolice.gov.in"
+
+GJ:
+  name: "Gujarat"
+  email: ""
+  portal: "https://gujaratcybercrime.org"
+
+RJ:
+  name: "Rajasthan"
+  email: ""
+  portal: "https://police.rajasthan.gov.in"
+
+WB:
+  name: "West Bengal"
+  email: ""
+  portal: "https://wbpolice.gov.in"
+
+TS:
+  name: "Telangana"
+  email: ""
+  portal: "https://tspolice.gov.in"
+
+AP:
+  name: "Andhra Pradesh"
+  email: ""
+  portal: "https://appolice.gov.in"
+
+MP:
+  name: "Madhya Pradesh"
+  email: ""
+  portal: "https://mppolice.gov.in"
+
+KL:
+  name: "Kerala"
+  email: ""
+  portal: "https://keralapolice.gov.in"
+
+PB:
+  name: "Punjab"
+  email: ""
+  portal: "https://punjabpolice.gov.in"
+
+BR:
+  name: "Bihar"
+  email: ""
+  portal: "https://police.bihar.gov.in"
+
+OTHER:
+  name: "National Cyber Crime Reporting"
+  email: ""
+  portal: "https://cybercrime.gov.in"
