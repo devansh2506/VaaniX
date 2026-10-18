@@ -19,39 +19,32 @@ export default function RadarPage() {
     reporters7d: number;
     commonScamType: string | null;
   } | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  const handleLookup = (e: React.FormEvent) => {
+  const handleLookup = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!phoneNumber.trim()) return;
 
     setIsSearching(true);
-    // Simulate / fetch lookup
-    setTimeout(() => {
-      // Demo response for initial verification
-      const cleanNum = phoneNumber.replace(/[^0-9]/g, "");
-      const isKnownScam = cleanNum.endsWith("43210") || cleanNum.endsWith("9999");
+    setErrorMessage(null);
 
-      if (isKnownScam) {
-        setLookupResult({
-          number: phoneNumber,
-          level: "potential_scam",
-          reporters24h: 4,
-          reporters7d: 11,
-          commonScamType: "Fake Police / Digital Arrest Threat",
-        });
-      } else {
-        setLookupResult({
-          number: phoneNumber,
-          level: "none",
-          reporters24h: 0,
-          reporters7d: 0,
-          commonScamType: null,
-        });
+    try {
+      const res = await fetch(`/api/radar/lookup?number=${encodeURIComponent(phoneNumber.trim())}`);
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error?.message || `Lookup failed (${res.status})`);
       }
 
+      setLookupResult(data.radar);
       setSearched(true);
+    } catch (err: unknown) {
+      setErrorMessage(err instanceof Error ? err.message : 'Lookup failed. Please check the number format.');
+      setSearched(true);
+      setLookupResult(null);
+    } finally {
       setIsSearching(false);
-    }, 400);
+    }
   };
 
   return (
@@ -94,6 +87,13 @@ export default function RadarPage() {
             </p>
           </form>
         </Card>
+
+        {/* Error Message */}
+        {errorMessage && (
+          <div className="p-4 rounded-xl bg-red-tint border border-red text-red-text text-sm">
+            {errorMessage}
+          </div>
+        )}
 
         {/* Result Area */}
         {searched && lookupResult && (
@@ -139,13 +139,61 @@ export default function RadarPage() {
                   <div className="p-3.5 rounded-xl bg-surface border border-red/20 text-center">
                     <span className="text-xs text-gray font-semibold uppercase">Primary Pattern</span>
                     <div className="text-xs font-bold text-navy mt-1 leading-snug">
-                      {lookupResult.commonScamType}
+                      {lookupResult.commonScamType || "AI Voice Clone"}
                     </div>
                   </div>
                 </div>
 
                 <p className="text-xs text-red-text font-medium pt-1">
                   Community guidance: Do not pick up or authorize any transactions if this number calls.
+                </p>
+              </div>
+            ) : lookupResult.level === "caution" ? (
+              <div className="p-6 rounded-2xl bg-yellow-tint border-2 border-yellow space-y-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="size-10 rounded-full bg-yellow text-navy flex items-center justify-center font-bold">
+                      !
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-yellow-text leading-tight">
+                        CAUTION ADVISED
+                      </h3>
+                      <span className="text-xs font-mono font-bold text-navy">
+                        {lookupResult.number}
+                      </span>
+                    </div>
+                  </div>
+                  <Badge variant="outline" className="border-yellow text-yellow-text font-bold">Caution</Badge>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+                  <div className="p-3.5 rounded-xl bg-surface border border-yellow/20 text-center">
+                    <span className="text-xs text-gray font-semibold uppercase">Reports (24h)</span>
+                    <div className="text-2xl font-bold tabular text-navy">
+                      {lookupResult.reporters24h}
+                    </div>
+                    <span className="text-[10px] text-faint">Distinct Reporters</span>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-surface border border-yellow/20 text-center">
+                    <span className="text-xs text-gray font-semibold uppercase">Reports (7d)</span>
+                    <div className="text-2xl font-bold tabular text-navy">
+                      {lookupResult.reporters7d}
+                    </div>
+                    <span className="text-[10px] text-faint">Cumulative Flags</span>
+                  </div>
+
+                  <div className="p-3.5 rounded-xl bg-surface border border-yellow/20 text-center">
+                    <span className="text-xs text-gray font-semibold uppercase">Primary Pattern</span>
+                    <div className="text-xs font-bold text-navy mt-1 leading-snug">
+                      {lookupResult.commonScamType || "Suspicious Activity"}
+                    </div>
+                  </div>
+                </div>
+
+                <p className="text-xs text-yellow-text font-medium pt-1">
+                  Community guidance: This number has recent reports. Verify caller identity before sharing information.
                 </p>
               </div>
             ) : (

@@ -1,14 +1,14 @@
 """
 CLI Pipeline with API forwarding:
-Captures call audio from microphone/BlackHole -> saves local WAV
+Captures call audio from microphone/BlackHole (or loads WAV file)
 -> POSTs to VaaniX website API (${VAANIX_API_URL}/api/v1/analyze)
 -> Prints verified detection verdict, transcript, and risk analysis JSON.
 """
 
+import argparse
 import json
 import os
 import sys
-from datetime import datetime
 from pathlib import Path
 
 import requests
@@ -19,9 +19,35 @@ VAANIX_API_URL = os.environ.get("VAANIX_API_URL", "http://localhost:3000").rstri
 VAANIX_API_KEY = os.environ.get("VAANIX_API_KEY", "")
 
 
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description="VaaniX Audio Capture & API Analyzer")
+    parser.add_argument(
+        "-f", "--file",
+        type=str,
+        default=None,
+        help="Path to an existing WAV audio file (skips mic recording)",
+    )
+    parser.add_argument(
+        "-c", "--caller",
+        type=str,
+        default=os.environ.get("CALLER_NUMBER", None),
+        help="Caller phone number (e.g. +919876543210) for Scam Radar escalation",
+    )
+    return parser.parse_args()
+
+
 def main() -> None:
-    wav_path = record_sample()
-    print(f"\n[pipeline] Audio captured: {wav_path.name}")
+    args = parse_args()
+
+    if args.file:
+        wav_path = Path(args.file)
+        if not wav_path.is_file():
+            print(f"[pipeline] Error: Audio file '{args.file}' not found.")
+            sys.exit(1)
+        print(f"\n[pipeline] Using audio file: {wav_path.name}")
+    else:
+        wav_path = record_sample()
+        print(f"\n[pipeline] Audio captured: {wav_path.name}")
 
     api_endpoint = f"{VAANIX_API_URL}/api/v1/analyze"
     print(f"[pipeline] Posting to VaaniX API: {api_endpoint}")
@@ -30,10 +56,21 @@ def main() -> None:
     if VAANIX_API_KEY:
         headers["Authorization"] = f"Bearer {VAANIX_API_KEY}"
 
+    data = {}
+    if args.caller:
+        data["caller_e164"] = args.caller
+        print(f"[pipeline] Including caller number: {args.caller}")
+
     try:
         with open(wav_path, "rb") as f:
             files = {"audio": (wav_path.name, f, "audio/wav")}
-            response = requests.post(api_endpoint, files=files, headers=headers, timeout=65)
+            response = requests.post(
+                api_endpoint,
+                files=files,
+                data=data,
+                headers=headers,
+                timeout=65,
+            )
 
         if response.status_code == 401:
             print("[pipeline] Error: Unauthorized. Check VAANIX_API_KEY in environment.")
